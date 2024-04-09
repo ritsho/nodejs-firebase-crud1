@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <script src="signup.js"></script>
+      <script src="signup.js" type="module"></script>
       <form method="post">
         <input type="text" name="name" placeholder="name" required />
         <input
@@ -20,7 +20,7 @@
         <input type="email" name="email" placeholder="email address" required />
 
         <div>
-          <button type="submit">CREATE</button>
+          <button type="submit" onclick="signup()">CREATE</button>
         </div>
         <span class="inline-element">Already registered?</span>
         <a href="login.html">Sign In</a>
