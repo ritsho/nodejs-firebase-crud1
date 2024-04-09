@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <script src="signup.js"></script>
+      <form method="post">
+        <input type="text" name="name" placeholder="name" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+        <input type="email" name="email" placeholder="email address" required />
+
+        <div>
+          <button type="submit">CREATE</button>
+        </div>
+        <span class="inline-element">Already registered?</span>
+        <a href="login.html">Sign In</a>
+      </form>
+    </div>
+  </body>
+</html>

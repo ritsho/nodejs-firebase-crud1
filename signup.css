@@ -1,0 +1,31 @@
+body {
+    background-color: #645cf2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+button {
+   background-color:#4c39b9; 
+   color:white; 
+   padding:10px 20px; 
+   border:none; 
+   cursor:pointer; 
+}
+.inline-element {
+    display: inline-block;
+}
+
+button:hover {background-color:#3a2ca5}
+p {text-align:center;}

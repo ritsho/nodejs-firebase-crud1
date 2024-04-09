@@ -1,0 +1,36 @@
+body {
+    background-color: #3f5fee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+}
+.centered {
+    text-align: center;
+}
+.inline-element {
+    display: inline-block;
+}
+input[type=text], input[type=password] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+button {
+   background-color:#40339e; 
+   color:white; 
+   padding :10px; 
+   width :100%; 
+   border:none
+ }
+ a{
+     display:block; 
+     text-align:center; 
+     margin-top :10px
+ }
