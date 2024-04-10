@@ -4,34 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" /> -->
     <link rel="stylesheet" href="index.css" type="text/css" />
   </head>
   <body>
     <script src="index.js" type="module"></script>
     <div class="login-container">
-      <form method="post">
-        <input
-          type="text"
-          id="txtUsername"
-          name="username"
-          value=""
-          placeholder="Username"
-        />
+      <input
+        type="email"
+        id="txtEmail"
+        name="email"
+        value=""
+        placeholder="Email"
+      />
 
-        <input
-          type="password"
-          id="txtPassword"
-          name="password"
-          value=""
-          placeholder="Password"
-        />
+      <input
+        type="password"
+        id="txtPassword"
+        name="password"
+        value=""
+        placeholder="Password"
+      />
 
-        <button type="submit" onclick="login()">LOGIN</button>
+      <button id="btnLogin" type="submit" >LOGIN</button>
 
-        <span class="centered inline-element">Not registered?</span>
-        <a class="inline-element" href="signup.html">Create an account</a>
-      </form>
+      <span class="centered inline-element">Not registered?</span>
+      <a class="inline-element" href="signup.html">Create an account</a>
     </div>
   </body>
 </html>
