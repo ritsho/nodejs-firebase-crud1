@@ -20,8 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const analytics = getAnalytics(app);
 
 function login() {
   // נשיג את שם המשתמש והסיסמה שהוא כתב
@@ -34,7 +32,7 @@ function login() {
   }
 
   const auth = getAuth(app);
-  signInWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, username, password)
     .then((userCredential) => {
       // צד השרת דיווח שהמשתמש כתב סיסמה נכונה אז נקבל את פרטי המשתמש שכתובים בפיירבייס
       const user = userCredential.user;
