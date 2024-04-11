@@ -36,15 +36,15 @@ btnLogin.onclick = function () {
   const auth = getAuth(app);
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log("sign in succeess start");
+      console.log("sign in succeess");
       // צד השרת דיווח שהמשתמש כתב סיסמה נכונה אז נקבל את פרטי המשתמש שכתובים בפיירבייס
       const user = userCredential.user;
       console.log(user);
       // נעבור לעמוד המשתמשים
-      window.location.href = "users_page.html";
+      window.location.replace(`users_page.html?email=${email}&uid=${user.uid}`);
     })
     .catch((error) => {
-      console.log("sign in fail start");
+      console.log("sign in failed");
       // המשתמש לא הצליח לבצע כניסה - נציג את השגיאה
       const errorCode = error.code;
       const errorMessage = error.message;

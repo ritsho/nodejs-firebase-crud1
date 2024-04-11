@@ -1,13 +1,9 @@
-import { getAuth, signOut } from "firebase/auth";
+import {
+  getAuth,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 const firebaseConfig = {
   apiKey: "AIzaSyAkAcIHfchG17PHS7aRNaso-wkAHTyg1mY",
   authDomain: "crud1-3cbde.firebaseapp.com",
@@ -20,7 +16,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// נשיג את הפרטים של המשתמש שנכנס
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email');
+console.log(email);  
+const uid = urlParams.get('uid');
+console.log(uid);  
 
 function deleteUser(user){
   console.log("TODO - Delete user");
@@ -33,7 +35,7 @@ function signout() {
   signOut(auth)
     .then(() => {
       // היציאה הצליחה - אז נעבור לעמוד הכניסה
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     })
     .catch((error) => {
       // להציג את השגיאה בנסיון לצאת

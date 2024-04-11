@@ -1,12 +1,16 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import {
+  getFirestore,
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAkAcIHfchG17PHS7aRNaso-wkAHTyg1mY",
   authDomain: "crud1-3cbde.firebaseapp.com",
@@ -19,20 +23,46 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-function signup(){
-    const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+let btnCreate = document.getElementById("btnCreate");
+btnCreate.onclick = function () {
+  const username = document.querySelectorAll("input")[0].value;
+  const password = document.querySelectorAll("input")[1].value;
+  const email = document.querySelectorAll("input")[2].value;
 
-}
+  console.log("before createUserWithEmailAndPassword");
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log("after createUserWithEmailAndPassword success");
+      // הרישום הצליח
+      const user = userCredential.user;
+      console.log(user);
+      const newUser = {
+        Id: user.uid,
+        Name: username,
+        Email: email,
+        Password: password,
+      };
+      console.log(newUser);
+
+      try {
+        const docRef = addDoc(collection(db, "users"), newUser);
+        console.log("User added with ID:", docRef.id);
+        alert("success. going to login page");
+
+        // נעבור לעמוד הכניסה
+        //window.location.href = "index.html";
+      } catch (e) {
+        console.error("Error adding user to db collection: ", e);
+      }
+    })
+    .catch((error) => {
+      // המשתמש לא הצליח לבצע רישום - נציג את השגיאה
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorCode + "\n" + errorMessage);
+    });
+};

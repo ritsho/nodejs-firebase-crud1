@@ -9,22 +9,15 @@
   <body>
     <div class="container">
       <script src="signup.js" type="module"></script>
-      <form method="post">
-        <input type="text" name="name" placeholder="name" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          required
-        />
-        <input type="email" name="email" placeholder="email address" required />
+      <input type="text" name="name" placeholder="name" required />
+      <input type="password" name="password" placeholder="password" required />
+      <input type="email" name="email" placeholder="email address" required />
 
-        <div>
-          <button type="submit" onclick="signup()">CREATE</button>
-        </div>
-        <span class="inline-element">Already registered?</span>
-        <a href="login.html">Sign In</a>
-      </form>
+      <div>
+        <button id="btnCreate" type="submit">CREATE</button>
+      </div>
+      <span class="inline-element">Already registered?</span>
+      <a href="index.html">Sign In</a>
     </div>
   </body>
 </html>
