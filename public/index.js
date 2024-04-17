@@ -2,13 +2,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAkAcIHfchG17PHS7aRNaso-wkAHTyg1mY",
   authDomain: "crud1-3cbde.firebaseapp.com",
@@ -19,14 +14,29 @@ const firebaseConfig = {
   measurementId: "G-0JPDNS976B",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const txtEmail = document.getElementById("txtEmail");
+const txtPassword = document.getElementById("txtPassword");
 let btnLogin = document.getElementById("btnLogin");
-btnLogin.onclick = function () {
+btnLogin.onclick = tryLogin;
+txtPassword.onkeyup = function(event){
+  // אם לחצו על אנטר כשנמצאים בשדה סיסמה
+  if (event.keyCode === 13){
+    tryLogin();
+  }
+}
+txtEmail.onkeyup = function(event){
+  // אם לחצו על אנטר כשנמצאים בשדה שם-משתמש
+  if (event.keyCode === 13 == 10){
+    tryLogin();
+  }
+};
+
+function tryLogin() {
   // נשיג את שם המשתמש והסיסמה שהוא כתב
-  const email = document.getElementById("txtEmail").value;
-  const password = document.getElementById("txtPassword").value;
+  const email = txtEmail.value;
+  const password = txtPassword.value;
 
   if (email == "" || password == "") {
     alert("user name or password empty");

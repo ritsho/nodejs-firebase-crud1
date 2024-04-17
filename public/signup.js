@@ -11,6 +11,8 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
+import { createUser, readUser, deleteUser } from "./firestoreServiceCRUD.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAkAcIHfchG17PHS7aRNaso-wkAHTyg1mY",
   authDomain: "crud1-3cbde.firebaseapp.com",
@@ -35,9 +37,8 @@ btnCreate.onclick = function () {
   console.log("before createUserWithEmailAndPassword");
 
   createUserWithEmailAndPassword(auth, email, password)
+    // הרישום הצליח
     .then((userCredential) => {
-      console.log("after createUserWithEmailAndPassword success");
-      // הרישום הצליח
       const user = userCredential.user;
       console.log(user);
       const newUser = {
@@ -46,18 +47,14 @@ btnCreate.onclick = function () {
         Email: email,
         Password: password,
       };
-      console.log(newUser);
+      console.log(
+        "trying to create new document with the new user details...",
+        newUser
+      );
+      createUser(newUser);
 
-      try {
-        const docRef = addDoc(collection(db, "users"), newUser);
-        console.log("User added with ID:", docRef.id);
-        alert("success. going to login page");
-
-        // נעבור לעמוד הכניסה
-        //window.location.href = "index.html";
-      } catch (e) {
-        console.error("Error adding user to db collection: ", e);
-      }
+      // נעבור לעמוד הכניסה שוב - כדי שהמשתמש יוכל להכנס עם הסיסמה שלו
+      //window.location.href = "index.html";
     })
     .catch((error) => {
       // המשתמש לא הצליח לבצע רישום - נציג את השגיאה
