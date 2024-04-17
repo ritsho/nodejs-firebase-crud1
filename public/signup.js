@@ -42,7 +42,6 @@ btnCreate.onclick = function () {
       const user = userCredential.user;
       console.log(user);
       const newUser = {
-        Id: user.uid,
         Name: username,
         Email: email,
         Password: password,
@@ -51,7 +50,7 @@ btnCreate.onclick = function () {
         "trying to create new document with the new user details...",
         newUser
       );
-      createUser(newUser);
+      createUser(user.uid, newUser);
 
       // נעבור לעמוד הכניסה שוב - כדי שהמשתמש יוכל להכנס עם הסיסמה שלו
       //window.location.href = "index.html";
