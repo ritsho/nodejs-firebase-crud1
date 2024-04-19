@@ -20,15 +20,15 @@ const txtEmail = document.getElementById("txtEmail");
 const txtPassword = document.getElementById("txtPassword");
 let btnLogin = document.getElementById("btnLogin");
 btnLogin.onclick = tryLogin;
-txtPassword.onkeyup = function(event){
+txtPassword.onkeyup = function (event) {
   // אם לחצו על אנטר כשנמצאים בשדה סיסמה
-  if (event.keyCode === 13){
+  if (event.keyCode === 13) {
     tryLogin();
   }
-}
-txtEmail.onkeyup = function(event){
+};
+txtEmail.onkeyup = function (event) {
   // אם לחצו על אנטר כשנמצאים בשדה שם-משתמש
-  if (event.keyCode === 13 == 10){
+  if ((event.keyCode === 13) == 10) {
     tryLogin();
   }
 };
@@ -60,4 +60,4 @@ function tryLogin() {
       const errorMessage = error.message;
       alert(errorCode + "\n" + errorMessage);
     });
-};
+}

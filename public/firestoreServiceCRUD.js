@@ -3,9 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/fireba
 import {
   getFirestore,
   collection,
-  addDoc,
   doc,
-  getDoc,
+  deleteDoc,
   getDocs,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -27,44 +26,21 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const USERS_COLLECTION = "users";
 
-class User {
-  constructor(id, name, email, password) {
-    this.Id = id;
-    this.Name = name;
-    this.Email = email;
-    this.Password = password;
-  }
-  toString() {
-    return (
-      this.Id + ", " + this.Name + ", " + this.Email + ", " + this.Password
-    );
-  }
+export async function getAllUsers() {
+  const users = collection(db, USERS_COLLECTION);
+  const allUsers = await getDocs(users);
+  return await allUsers.docs;
 }
-
-// Firestore data converter
-const userConverter = {
-  toFirestore: (user) => {
-    return {
-      Name: user.Name,
-      Email: user.Email,
-      Password: user.Password,
-    };
-  },
-  fromFirestore: (snapshot, options) => {
-    const data = snapshot.data(options);
-    return new User(data.Name, data.Email, data.Password);
-  },
-};
 
 // פונקציה ליצור משתמש חדש
 export async function createUser(uid, user) {
   try {
-    if (uid =="" || user == null){
+    if (uid == "" || user == null) {
       console.log("incorrect data to save. exiting...");
       return;
-    } 
-    const users = collection(db, "users");
-    console.log('about to save user to firestore:', user);
+    }
+    const users = collection(db, USERS_COLLECTION);
+    console.log("about to save user to firestore:", user);
     await setDoc(doc(users, uid), user);
     console.log("saved user!!!.", uid);
   } catch (error) {
@@ -76,7 +52,8 @@ export async function createUser(uid, user) {
 // פונקציה לקריאת הפרטים של המשתמש לפי המזהה
 export async function readUser(userId) {
   try {
-    const docSnapshot = await db.collection(USERS_COLLECTION).doc(userId).get();
+    const users = collection(db, USERS_COLLECTION);
+    const docSnapshot = await users.doc(userId).get();
     if (docSnapshot.exists) {
       return docSnapshot.data();
     } else {
@@ -92,7 +69,9 @@ export async function readUser(userId) {
 // למחוק משתמש
 export async function deleteUser(userId) {
   try {
-    await db.collection(USERS_COLLECTION).doc(userId).delete();
+    const users = collection(db, USERS_COLLECTION);
+    console.log("about to delete user:", userId);
+    let userDoc = await deleteDoc(doc(users, userId));
   } catch (error) {
     console.error("Error deleting user:", error);
     throw error;

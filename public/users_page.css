@@ -1,0 +1,30 @@
+body {
+    background-color: #645cf2;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    text-align:center;
+    color: white;
+}
+#table-container{
+    table, th, td {
+        width:600px;
+        border: 1px solid;
+        background-color: white;} 
+    display: ruby-text;
+    margin:0;
+    text-align: center;
+    padding: 20px;  
+}
+
+#btnSignOut{
+    display:block;
+    margin:auto;  
+    border-radius: 4px;
+    background-color: white;
+    border-color: gray;
+    font-size: 16px;
+
+}
