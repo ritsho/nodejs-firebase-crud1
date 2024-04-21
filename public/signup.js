@@ -38,9 +38,11 @@ btnCreate.onclick = function () {
 
   createUserWithEmailAndPassword(auth, email, password)
     // הרישום הצליח
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
       console.log(user);
+
+      // ליצור משתמש חדש בדיבי
       const newUser = {
         Name: username,
         Email: email,
@@ -50,8 +52,9 @@ btnCreate.onclick = function () {
         "trying to create new document with the new user details...",
         newUser
       );
-      createUser(user.uid, newUser);
-
+      // נשמור את המשתמש החדש בדיבי
+      await createUser(user.uid, newUser);
+      
       // נעבור לעמוד הכניסה שוב - כדי שהמשתמש יוכל להכנס עם הסיסמה שלו
       window.location.href = "index.html";
     })
