@@ -22,9 +22,13 @@ const app = initializeApp(firebaseConfig);
 // נשיג את הפרטים של המשתמש שנכנס
 const urlParams = new URLSearchParams(window.location.search);
 const email = urlParams.get("email");
+
 console.log(email);
 const uid = urlParams.get("uid");
 console.log(uid);
+
+const currentUser = document.getElementById("username");
+currentUser.innerText = email;
 
 let allUsers = await getAllUsers();
 

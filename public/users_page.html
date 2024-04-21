@@ -4,12 +4,17 @@
     <title>Users page</title>
   </head>
   <body>
+    <ul class="nav">
+      <li><a href="/public/index.html">Login Page</a></li>
+      <li><a href="/public/signup.html">Register new user</a></li>
+      <li><a href="#" id="btnSignOut">Sign Out</a></li>
+    </ul>
+    
     <h1>Users list</h1>
+    <p>Welcome: <span id="username"></span></p>
     <link rel="stylesheet" href="users_page.css" />
     <script src="users_page.js" type="module"></script>
 
     <div id="table-container"></div>
-    <button id="btnSignOut">Sign Out</button>
- 
   </body>
 </html>

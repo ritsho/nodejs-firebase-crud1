@@ -53,7 +53,7 @@ btnCreate.onclick = function () {
       createUser(user.uid, newUser);
 
       // נעבור לעמוד הכניסה שוב - כדי שהמשתמש יוכל להכנס עם הסיסמה שלו
-      //window.location.href = "index.html";
+      window.location.href = "index.html";
     })
     .catch((error) => {
       // המשתמש לא הצליח לבצע רישום - נציג את השגיאה
